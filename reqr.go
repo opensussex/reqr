@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"net"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -36,10 +38,25 @@ func req(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	fmt.Println("Send Requests to: http://localhost:8666")
+
+	//get the local IP
+	addrs, err := net.InterfaceAddrs()
+	if err != nil {
+		os.Stderr.WriteString("Oops: " + err.Error() + "\n")
+		os.Exit(1)
+	}
+
+	for _, a := range addrs {
+		if ipnet, ok := a.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
+			if ipnet.IP.To4() != nil {
+				fmt.Println("Send Requests to: http://" + ipnet.IP.String() + ":8666")
+				//os.Stdout.WriteString(ipnet.IP.String() + "\n")
+			}
+		}
+	}
 	fmt.Println("Ctrl-C exit!")
 	http.HandleFunc("/", req)
-	err := http.ListenAndServe(":8666", nil)
+	err = http.ListenAndServe(":8666", nil)
 	if err != nil {
 		fmt.Println("ListenAndServe: ", err)
 	}
