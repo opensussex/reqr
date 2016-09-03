@@ -19,14 +19,14 @@ func req(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println("Ooops! somethings gone wrong")
-		panic(err)
+		os.Exit(1)
 	}
 
 	var prettyJSON bytes.Buffer
 	err = json.Indent(&prettyJSON, body, "", "\t")
 	if err != nil {
 		fmt.Println("Ooops! somethings gone wrong")
-		panic(err)
+		os.Exit(1)
 	}
 	fmt.Println("Body: ")
 	fmt.Println(string(prettyJSON.Bytes()))
@@ -42,7 +42,7 @@ func main() {
 	//get the local IP
 	addrs, err := net.InterfaceAddrs()
 	if err != nil {
-		os.Stderr.WriteString("Oops: " + err.Error() + "\n")
+		fmt.Println("Ooops! somethings gone wrong")
 		os.Exit(1)
 	}
 
