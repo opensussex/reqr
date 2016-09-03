@@ -7,11 +7,13 @@ This was made for a very specific task, to help debug calls that were sent from 
 
 Following the YAGNI (You Arn't Gonna Need It) approach, I've only developed this for a very specific use case - and it might not meet general purpose needs.  Over time when I need to adapt it I'll make changes.
 
+You'll need go to run this.... 
+
 ###To run
 
     go run reqr.go
     
-or if you have go you can build reqr 
+or to build
 
     go build reqr.go
     
