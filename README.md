@@ -1,9 +1,11 @@
 #Reqr
 ====
 
-Simple HTTP request inspector
+Simple HTTP request inspector - this is a tiny web server that is waiting for post / get requests and it will output the GET / POST parameters and the JSON body.
 
 This was made for a very specific task, to help debug calls that were sent from a course to an LRS using Tin Can (xAPI).
+
+Following the YAGNI (You Arn't Gonna Need It) approach, I've only developed this for a very specific use case - and it might not meet general purpose needs.  Over time when I need to adapt it I'll make changes.
 
 ###To run
 
