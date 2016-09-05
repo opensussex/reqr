@@ -17,6 +17,8 @@ or to build
 
     go build reqr.go
     
+Once build, then copy to a location in your path so you can run - for example /usr/local/bin    
+    
 when it runs it will get the ip address and this can be used as the end point
 
 
